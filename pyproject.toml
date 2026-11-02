@@ -1,0 +1,33 @@
+[project]
+name = "event-triggered-drl"
+version = "0.1.0"
+description = "Event-triggered DRL for multi-asset trading: DOW-30 experiment pipeline"
+requires-python = "==3.12.*"
+dependencies = [
+    "finrl @ git+https://github.com/AI4Finance-Foundation/FinRL.git@fee45af12ee0af490cd8e091514173b571dcd9ed",
+    "stable-baselines3==2.8.0a0",
+    "torch==2.5.1",
+    "gymnasium==1.2.2",
+    "numpy==2.2.6",
+    "pandas==2.2.3",
+    "scipy==1.16.3",
+    "matplotlib==3.10.6",
+    "pyportfolioopt==1.5.6",
+    "stockstats==0.5.4",
+    "quantstats==0.0.77",
+    "yfinance==0.2.66",
+    "jupyterlab==4.4.7",
+    "notebook==7.4.5",
+    "ipykernel==6.31.0",
+    "nbformat==5.10.4",
+    "ipython==9.7.0",
+]
+
+[tool.uv]
+prerelease = "allow"
+# alpaca-trade-api declares websockets<11, but the proven-working conda env
+# runs fine on websockets 15.x (alpaca-trade-api is a transitive dep of finrl
+# that this project's code never actually calls). Override to match reality.
+override-dependencies = [
+    "websockets==15.0.1",
+]
